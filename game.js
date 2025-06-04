@@ -1,0 +1,1 @@
+// Placeholder for game logic (spawn crystals, interactions, etc.)
