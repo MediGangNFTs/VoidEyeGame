@@ -3,20 +3,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mura Eye: Void Hunt</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="game-container">
-    <h1 id="title">Mura Eye: Void Hunt</h1>
-    <button id="start-button">Start Game</button>
-    <div id="game-area" class="hidden">
-      <canvas id="game-canvas"></canvas>
-      <div id="timer">Time: 45</div>
-      <div id="score">Score: 0</div>
-    </div>
+  <div id="hud">
+    <div id="score">Score: 0</div>
+    <div id="timer">Time: 45</div>
+    <div id="threat">Threat: Low</div>
   </div>
+  <button id="playButton">Play</button>
+  <canvas id="gameCanvas"></canvas>
   <script src="script.js"></script>
 </body>
 </html>
