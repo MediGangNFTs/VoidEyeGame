@@ -4,17 +4,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mura Eye: Void Hunt</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Mura Eye: Hunt in the Void</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(#000000, #0a0a0a);
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+      color: white;
+      text-align: center;
+    }
+    .eye {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #1a1a1a, #000);
+      border: 4px solid white;
+      box-shadow: 0 0 10px 5px red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .pupil {
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      box-shadow: 0 0 4px white;
+    }
+    .scan-ring {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 0, 0, 0.4);
+      animation: scanExpand 2s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes scanExpand {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="hud">
-    <div id="score">Score: 0</div>
-    <div id="timer">Time: 45</div>
-    <div id="threat">Threat: Low</div>
+  <h1>Mura Eye: Hunt in the Void</h1>
+  <div class="eye" id="muraEye" style="left: 50%; top: 50%; transform: translate(-50%, -50%);">
+    <div class="pupil"></div>
+    <div class="scan-ring"></div>
   </div>
-  <button id="playButton">Play</button>
-  <canvas id="gameCanvas"></canvas>
-  <script src="script.js"></script>
+  <script>
+    const eye = document.getElementById("muraEye");
+    let x = window.innerWidth / 2;
+    let y = window.innerHeight / 2;
+    let speed = 0.4;
+    let direction = Math.random() * 2 * Math.PI;
+
+    function moveEye() {
+      x += Math.cos(direction) * speed;
+      y += Math.sin(direction) * speed;
+
+      if (x < 0 || x > window.innerWidth || y < 0 || y > window.innerHeight) {
+        direction = Math.random() * 2 * Math.PI;
+      }
+
+      eye.style.left = x + "px";
+      eye.style.top = y + "px";
+
+      speed += 0.0002; // Gradual speed increase
+      requestAnimationFrame(moveEye);
+    }
+
+    moveEye();
+  </script>
 </body>
 </html>
