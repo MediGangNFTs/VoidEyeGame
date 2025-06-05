@@ -4,85 +4,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mura Eye: Hunt in the Void</title>
+  <title>Mura Eye Game</title>
   <style>
-    body {
-      margin: 0;
-      background: radial-gradient(#000000, #0a0a0a);
-      overflow: hidden;
-      font-family: 'Orbitron', sans-serif;
-      color: white;
-      text-align: center;
-    }
-    .eye {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #1a1a1a, #000);
-      border: 4px solid white;
-      box-shadow: 0 0 10px 5px red;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .pupil {
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      box-shadow: 0 0 4px white;
-    }
-    .scan-ring {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 0, 0, 0.4);
-      animation: scanExpand 2s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes scanExpand {
-      0% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(3);
-        opacity: 0;
-      }
-    }
+    body { margin: 0; background: black; overflow: hidden; }
+    canvas { display: block; }
   </style>
 </head>
 <body>
-  <h1>Mura Eye: Hunt in the Void</h1>
-  <div class="eye" id="muraEye" style="left: 50%; top: 50%; transform: translate(-50%, -50%);">
-    <div class="pupil"></div>
-    <div class="scan-ring"></div>
-  </div>
+  <canvas id="gameCanvas"></canvas>
   <script>
-    const eye = document.getElementById("muraEye");
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let speed = 0.4;
-    let direction = Math.random() * 2 * Math.PI;
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    function moveEye() {
-      x += Math.cos(direction) * speed;
-      y += Math.sin(direction) * speed;
+    const eyeImg = new Image();
+    eyeImg.src = 'mura_eye.png';
+    let x = canvas.width / 2;
+    let y = canvas.height / 2;
+    let direction = 1;
+    let speed = 0.5;
 
-      if (x < 0 || x > window.innerWidth || y < 0 || y > window.innerHeight) {
-        direction = Math.random() * 2 * Math.PI;
-      }
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(eyeImg, x - 64, y - 64, 128, 128);
 
-      eye.style.left = x + "px";
-      eye.style.top = y + "px";
+      // Movement logic
+      x += direction * speed;
+      if (x > canvas.width - 64 || x < 64) direction *= -1;
 
-      speed += 0.0002; // Gradual speed increase
-      requestAnimationFrame(moveEye);
+      requestAnimationFrame(animate);
     }
 
-    moveEye();
+    eyeImg.onload = () => {
+      animate();
+    };
   </script>
 </body>
 </html>
