@@ -1,0 +1,31 @@
+
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+}
+#game-container {
+  padding-top: 20px;
+}
+#start-button {
+  font-size: 20px;
+  padding: 10px 20px;
+  background-color: #0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.hidden {
+  display: none;
+}
+#game-canvas {
+  display: block;
+  margin: 20px auto;
+  background-color: black;
+  border: 2px solid white;
+}
+#timer, #score {
+  font-size: 24px;
+}
