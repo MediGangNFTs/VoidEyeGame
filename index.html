@@ -1,44 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mura Eye Game</title>
-  <style>
-    body { margin: 0; background: black; overflow: hidden; }
-    canvas { display: block; }
-  </style>
+  <title>Mura Eye - Watcher Game</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <canvas id="gameCanvas"></canvas>
-  <script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const eyeImg = new Image();
-    eyeImg.src = 'mura_eye.png';
-    let x = canvas.width / 2;
-    let y = canvas.height / 2;
-    let direction = 1;
-    let speed = 0.5;
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(eyeImg, x - 64, y - 64, 128, 128);
-
-      // Movement logic
-      x += direction * speed;
-      if (x > canvas.width - 64 || x < 64) direction *= -1;
-
-      requestAnimationFrame(animate);
-    }
-
-    eyeImg.onload = () => {
-      animate();
-    };
-  </script>
+  <canvas id="muraCanvas"></canvas>
+  <script src="script.js"></script>
 </body>
 </html>
