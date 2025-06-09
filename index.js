@@ -1,7 +1,7 @@
 
 import dynamic from 'next/dynamic';
 
-const GameCanvas = dynamic(() => import('../components/GameCanvas'), { ssr: false });
+const GameCanvas = dynamic(() => import('./GameCanvas'), { ssr: false });
 
 export default function Home() {
   return (

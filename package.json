@@ -1,6 +1,6 @@
 
 {
-  "name": "void-tower-defense",
+  "name": "void-tower-defense-flat",
   "version": "1.0.0",
   "scripts": {
     "dev": "next dev",

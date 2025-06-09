@@ -24,7 +24,6 @@ export default function GameCanvas() {
       const cx = x + r;
       const cy = y + r;
 
-      // Red glow
       const glow = ctx.createRadialGradient(cx, cy, r / 2, cx, cy, r);
       glow.addColorStop(0, 'rgba(255,0,0,0.5)');
       glow.addColorStop(1, 'rgba(255,0,0,0)');
@@ -33,20 +32,17 @@ export default function GameCanvas() {
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.fill();
 
-      // Black body
       ctx.fillStyle = 'black';
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.fill();
 
-      // White outline
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.stroke();
 
-      // Red pupil
       ctx.fillStyle = 'red';
       ctx.beginPath();
       if (blinkState === 'diamond') {
@@ -64,7 +60,6 @@ export default function GameCanvas() {
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Blink logic
       enemy.blinkTimer += 1;
       if (enemy.blinkTimer % 120 === 0) {
         enemy.blinkState = 'line';
@@ -72,7 +67,6 @@ export default function GameCanvas() {
         enemy.blinkState = 'diamond';
       }
 
-      // Move
       enemy.x += enemy.speed;
       if (enemy.x > canvas.width) enemy.x = -enemy.size;
 
