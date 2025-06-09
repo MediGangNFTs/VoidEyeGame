@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 
 export default function GameCanvas() {
@@ -15,7 +16,7 @@ export default function GameCanvas() {
       speed: 2,
       size: 64,
       blinkTimer: 0,
-      blinkState: 'diamond', // 'diamond' or 'line'
+      blinkState: 'diamond',
     };
 
     const drawEye = (ctx, x, y, size, blinkState) => {
@@ -60,7 +61,7 @@ export default function GameCanvas() {
       }
     };
 
-    const draw = (ts) => {
+    const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // Blink logic
